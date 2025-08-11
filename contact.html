@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran MPLS Modern</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #5F2EEA;
+            --secondary-color: #A2D2FF;
+            --text-color: #1A1A1A;
+            --bg-color: #F7F9FC;
+            --card-bg: #FFFFFF;
+            --border-color: #E0E4EB;
+            --error-color: #E74C3C;
+            --success-color: #2ECC71;
+            --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --focus-shadow: 0 0 0 4px rgba(95, 46, 234, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .form-card {
+            width: 100%;
+            max-width: 550px;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #6B7280;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background-color: #FDFEFE;
+            color: var(--text-color);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: var(--focus-shadow);
+        }
+        
+        input.invalid {
+            border-color: var(--error-color);
+        }
+        input.valid {
+            border-color: var(--success-color);
+        }
+        
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            height: 18px;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+        
+        .error-message:empty {
+            opacity: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px; /* Memberikan jarak antar tombol */
+            margin-top: 25px;
+        }
+        
+        button, .back-button {
+            width: 100%;
+            padding: 16px;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            letter-spacing: 0.5px;
+            text-align: center; /* Memastikan teks di tengah */
+            text-decoration: none; /* Menghilangkan garis bawah pada link */
+        }
+        
+        button[type="submit"] {
+            background-color: var(--primary-color);
+        }
+
+        button[type="submit"]:hover {
+            background-color: #4B25CD;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(95, 46, 234, 0.2);
+        }
+        
+        .back-button {
+            background-color: #B0B0B0; /* Warna abu-abu yang netral */
+            color: #4A4A4A;
+        }
+        
+        .back-button:hover {
+            background-color: #9C9C9C;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(176, 176, 176, 0.4);
+        }
+
+        button:active, .back-button:active {
+            transform: translateY(0);
+        }
+
+        fieldset {
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+        legend {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h2>Pendaftaran MPLS</h2>
+        <p class="subtitle">Isi data diri Anda dengan benar untuk proses verifikasi.</p>
+
+        <form id="formMPLS" novalidate>
+            <fieldset>
+                <legend>Formulir Pendaftaran MPLS</legend>
+
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" placeholder="Cth: Budi Santoso" required>
+                    <div class="error-message" id="errNama"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Jenis Kelamin</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">-- Pilih Jenis Kelamin --</option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                    <div class="error-message" id="errGender"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Alamat Email</label>
+                    <input type="email" id="email" name="email" placeholder="Cth: nama@email.com" required>
+                    <div class="error-message" id="errEmail"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sekolah">Asal Sekolah</label>
+                    <input type="text" id="sekolah" name="sekolah" placeholder="Cth: SMPN 1 Jakarta" required>
+                    <div class="error-message" id="errSekolah"></div>
+                </div>
+
+                <div class="form-group">
+  <label for="hp">No. HP (WhatsApp)</label>
+  <input type="tel" id="hp" name="hp" placeholder="Cth: 081234567890" required>
+  <div class="error-message" id="errHp"></div>
+</div>
+
+            </fieldset>
+
+            <div class="button-group">
+                <a href="index.html" class="back-button">Kembali ke Beranda</a>
+                <button type="submit">Daftar Sekarang</button>
+</form>
+
+<script>
+  document.getElementById("formMPLS").addEventListener("submit", function (e) {
+    e.preventDefault(); // mencegah submit default
+
+    const input = document.getElementById("hp").value.trim();
+    const hp = input.replace(/\D/g, ""); // hanya angka
+    const errHp = document.getElementById("errHp");
+
+    let isValid = true;
+
+    if (hp.length < 11 || hp.length > 13) {
+      errHp.textContent = "Nomor HP harus 11–13 digit angka.";
+      isValid = false;
+    } else if (!hp.startsWith("08")) {
+      errHp.textContent = "Nomor HP tidak valid (harus mulai dengan 08).";
+      isValid = false;
+    } else {
+      errHp.textContent = "";
+    }
+
+    // Jika valid, redirect ke index.html
+    if (isValid) {
+      // Simulasikan submit atau simpan data di sini jika perlu
+
+      // Redirect
+      window.location.href = "index.html";
+    }
+  });
+</script>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('formMPLS');
+        const fields = ['nama', 'gender', 'email', 'sekolah', 'hp'];
+        const errorMessages = {
+            nama: "Nama lengkap wajib diisi.",
+            gender: "Jenis kelamin wajib dipilih.",
+            email: "Email yang Anda masukkan tidak valid.",
+            sekolah: "Asal sekolah wajib diisi.",
+            hp: "Nomor HP tidak valid (contoh: 081234567890)."
+        };
+
+        const validateField = (field) => {
+            const element = document.getElementById(field);
+            const errorElement = document.getElementById('err' + field.charAt(0).toUpperCase() + field.slice(1));
+            let isValid = true;
+            let value = element.value.trim();
+
+            element.classList.remove('invalid', 'valid');
+            errorElement.textContent = '';
+
+            if (field === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    isValid = false;
+                }
+            } else if (field === 'hp') {
+                const hpRegex = /^0?8[1-9][0-9]{7,12}$/;
+                if (!hpRegex.test(value)) {
+                    isValid = false;
+                }
+            } else if (value === "" || (field === 'gender' && value === "")) {
+                isValid = false;
+            }
+
+            if (!isValid) {
+                element.classList.add('invalid');
+                errorElement.textContent = errorMessages[field];
+            } else {
+                element.classList.add('valid');
+            }
+
+            return isValid;
+        };
+
+        const handleInput = (event) => {
+            const field = event.target.id;
+            validateField(field);
+        };
+
+        fields.forEach(field => {
+            const element = document.getElementById(field);
+            if (element) {
+                element.addEventListener('input', handleInput);
+                element.addEventListener('blur', handleInput);
+            }
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let formValid = true;
+
+            fields.forEach(field => {
+                if (!validateField(field)) {
+                    formValid = false;
+                }
+            });
+
+            if (formValid) {
+                alert("Pendaftaran Berhasil! Terima kasih telah mendaftar.");
+                this.reset();
+                fields.forEach(field => {
+                    document.getElementById(field).classList.remove('valid');
+                });
+            } else {
+                for (let field of fields) {
+                    if (!validateField(field)) {
+                        document.getElementById(field).focus();
+                        break;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
